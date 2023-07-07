@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 30 14:32:27 2023
-
-@author: kanoon
-"""
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime as dt
@@ -25,6 +18,7 @@ plt.plot(x,df['value'],'red')
 
 plt.xlabel('Date')
 plt.ylabel('Page Views')
+plt.savefig('C:/Users/kanoon/Desktop/freecode camp/4/fig1', dpi=200)
 
 df=df.loc[(df['value']>=df['value'].quantile(0.025))&( df['value']<=df['value'].quantile(0.975))]
 
@@ -55,6 +49,10 @@ values=[value1,value2,value3,value4]
 Frum_view=pd.DataFrame(values, index=['2016','2017','2018','2019'])
 
 Frum_view.plot(kind="bar", ylim=(0,300000))
+plt.xlabel('Years')
+plt.ylabel('Page Views')
+plt.gcf().set_size_inches(10,5)
+plt.savefig('C:/Users/kanoon/Desktop/freecode camp/4/fig2', dpi=300)
 
 
 
@@ -67,17 +65,39 @@ df1= pd.DataFrame({'2016':df.loc[df['Years']==2016,'value'],'2017':df.loc[df['Ye
 fig, ax = plt.subplots()                      
 # plt.boxplot()
 
+sns.boxplot(df1)
 sns.boxplot(df1).set_title('Year-wise Box Plot (Trend)')
+sns.boxplot(df1).set_xlabel('Year')
+sns.boxplot(df1).set_ylabel('Page Values')
+plt.gcf().set_size_inches(10,5)
+plt.savefig('C:/Users/kanoon/Desktop/freecode camp/4/fig3', dpi=200)
+
+# Replacement numbers by month name
+month_name=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+
+for m in range(12):
+    
+   df['month'].replace(m, month_name[m],inplace=True)
+
+
 
 
 month_views={}
 
-for m in range(13):
+for m in month_name:
     
     month_views[m]= df[(df['month']==m)&(df['value'])]['value']
     
 df2= pd.DataFrame(month_views)
+
+
+
+
 fig, ax = plt.subplots()                      
 # plt.boxplot()
 
 sns.boxplot(df2).set_title('Month-wise Box Plot (Seasonality)')
+sns.boxplot(df2).set_xlabel('Month')
+sns.boxplot(df2).set_ylabel('Page Values')
+plt.gcf().set_size_inches(10,5)
+plt.savefig('C:/Users/kanoon/Desktop/freecode camp/4/fig4', dpi=200)
