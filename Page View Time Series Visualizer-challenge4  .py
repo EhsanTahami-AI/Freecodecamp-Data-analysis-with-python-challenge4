@@ -67,7 +67,7 @@ df1= pd.DataFrame({'2016':df.loc[df['Years']==2016,'value'],'2017':df.loc[df['Ye
 fig, ax = plt.subplots()                      
 # plt.boxplot()
 
-sns.boxplot(df1)
+sns.boxplot(df1).set_title('Year-wise Box Plot (Trend)')
 
 
 month_views={}
@@ -80,4 +80,4 @@ df2= pd.DataFrame(month_views)
 fig, ax = plt.subplots()                      
 # plt.boxplot()
 
-sns.boxplot(df2)
+sns.boxplot(df2).set_title('Month-wise Box Plot (Seasonality)')
